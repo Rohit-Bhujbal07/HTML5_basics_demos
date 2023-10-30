@@ -1,0 +1,38 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="button" value="SendMessage">
+        <div id="d1"></div>
+        <script>
+            var d1=document.getElementById("d1");
+            window.addEventListener("Load",funLoad,false);
+
+            var btn=document.querySelector("input");
+            btn.addEventListener("click",sendMsg,false);
+
+            var w=new Worker("echo.js");
+            w.addEventListener("message",getMsg,false);
+
+            function funLoad(){
+                if(typeof(Worker)){
+                    d1.innerHTML="WebWorker Supported!!";
+                }
+                else{
+                    d1.innerHTML="Not supported....";
+                }
+            }
+
+            function sendMsg(){
+                console.log("send Msg");
+                w.postMessage("Hello From HTML!!!");
+            }
+
+            function getMsg(event){
+               d1.innerHTML=event.data;
+            }
+
+        </script>
+    </body>
+</html>

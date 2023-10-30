@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <style>
+            div{
+                width:100px;
+                height:100px;
+                border:2px solid black;
+            }
+        </style>
+
+    </head>
+    <body>
+        <ul ondragstart="dragstartHandler(event)">
+        <li draggable="true" data-mks="50">red</li>
+        <li draggable="true" data-mks="60">blue</li>
+        <li draggable="true" data-mks="30">black</li>
+        <li draggable="true" data-mks="40">green</li>
+
+        </ul>
+        <div id="d1" ondrop="dropHandler(event)" ondragOver="dragoverHandler(event)"></div>
+        <div id="d2" ondrop="dropHandler(event)" ondragOver="dragoverHandler(event)"></div>
+        <script>
+               function dragstartHandler(event){
+                event.dataTransfer.setData("text/plain",event.target.textContent);
+                event.dataTransfer.setData("text/data-mks",event.target.dataset.mks);
+                console.log(event.target.dataset.mks);
+               }
+               function dragoverHandler(event){
+                event.preventDefault();
+               }
+               function dropHandler(event){
+                event.preventDefault();
+                var txt=event.dataTransfer.getData("text/plain");
+                var m1=event.dataTransfer.getData("text/data-mks");
+                
+                var x=event.currentTarget.id;
+                if(x == "d1"){
+                    event.currentTarget.innerHTML+="<li>"+txt+"</li>";
+                }
+                else if( x == "d2"){
+                    event.currentTarget.innerHTML+="<li>"+m1+"</li>";
+                }
+               }
+        </script>
+    </body>
+</html>

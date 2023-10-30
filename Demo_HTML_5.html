@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form enctype="">
+        Email:<input type="email" required autofocus tabindex="1" name="email1"><br>
+        color:<input type="color"><br>
+        Number:<input type="number" min="10" max="30" step="5" oninvalid="setCustomValidity('myMessage!!')"><br>
+        Range:<input type="range" min="10" max="50" value="30" id="range1" oninput="out1.value=range1.value">
+        <output id="out1"></output><br>
+        Date:<input type="date" tabindex="2"><br>
+        Date:<input type="datetime-local"><br>
+        Date:<input type="month"><br>
+        Progress:<progress value="50"></progress><br>
+        URL:<input type="url" tabindex="3"><br>
+        city:<input type="text" list="listCity" name="aaa">
+        <datalist id="listCity">
+            <option>Pune</option>
+            <option>Mumbai</option>
+        </datalist>
+        <br>
+        Image:<input type="file"><br>
+        <button formaction="app.js" formmethod="get" formnovalidate>Submit</button>
+        <button formaction="app.js" formmethod="post">Submit2</button>
+        Num:<input type="number" id="num1" min="10" max="30"><br>
+        <input type="button" value="CheckValidation" onclick="funCheck()">
+
+    </form>
+    <script>
+        function funCheck(){
+            var num1=document.getElementById("num1");
+            if(num1.checkValidity()){
+                alert("valid input");
+
+            }
+            else{
+                alert("invalid input");
+                
+            }
+        }
+    </script>
+</body>
+</html>

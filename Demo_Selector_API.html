@@ -1,0 +1,34 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="checkbox" value="reading">Reading<br>
+        <input type="checkbox" value="writing">Writing<br>
+        <input type="checkbox" value="painting">Painting<br>
+        <input type="checkbox" value="Singing">Singing<br>
+        <input type="button" value="Submit" onclick="fun1()">
+        
+        <div id="d1"></div>
+        
+        <script>
+         function funCheck(arr){
+            var str="";
+            var checkArr= new Array();
+            for(i=0;i<arr.length;i++){
+                if(arr[i].checked){
+                    str+=arr[i].value+",";
+                }
+            }
+            return str;
+
+         }
+         function fun1(){
+            var check=document.querySelectorAll('[type="checkbox"]');
+            var char=funCheck(Array.from(check));
+            var d1=document.querySelector('div');
+            d1.innerHTML+="<br>"+char;
+         }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        CookieName:<input type="text" id="txtName"><br>
+        ColorName:<input type="text" id="txtColor"><br>
+        <input type="button" value="CreateCookies" onclick="funCreate()">
+        <input type="button" value="DeleteCookies" onclick="funDelete()">
+        <script>
+            function funCreate(){
+                var name=document.getElementById("txtColor").value;
+                document.cookie="color="+name+";expires=thu 20 july 2023 00:00:00;";
+                alert("cookies Created");
+            }
+            function funDelete(){
+                document.cookie="color=;expires=thu 20 july 2022 00:00:00;";
+            }
+
+        </script>
+    </body>
+</html>

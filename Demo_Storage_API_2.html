@@ -1,0 +1,65 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+     Name:<input type="text" id="txtName"><br>
+     Price:<input type="text" id="txtPrice"><br>
+     <input type="button" value="Add" onclick="funAdd()">
+     <input type="button" value="Update" onclick="funUpdate()">
+     <input type="button" value="Delete" onclick="funDelete()">
+     <input type="button" value="Clear" onclick="funClear()">
+    <ul id="list"></ul>
+    </body>
+    <script>
+        var d1=document.querySelector("ul");
+        d1.addEventListener("click",funClick,false);
+        display();
+        function funAdd(){
+            var txtName=document.getElementById("txtName").value;
+            var txtPrice=document.getElementById("txtPrice").value;
+            localStorage.setItem(txtName,txtPrice);
+            display();
+        }
+
+        function display(){
+            var str="";
+            for(i=0;i<localStorage.length;i++){
+                str+="<li>"+localStorage.key(i)+"*"+localStorage.getItem(localStorage.key(i))+"</li>";
+            }
+
+            d1.innerHTML=str;
+            
+        }
+        
+        function funUpdate(){
+            funAdd();
+        }
+
+        function funClick(event){
+            var txt=event.target.textContent;
+            var arr=txt.split("*");
+            document.getElementById("txtName").value=arr[0];
+            document.getElementById("txtPrice").value=arr[1];
+
+        }
+
+        function funDelete(){
+            var name=document.getElementById("txtName").value;
+            if(confirm("are you sure to delete?")){
+                localStorage.removeItem(name);
+            }
+            display();
+           
+        }
+
+        function funClear(){
+            var name=document.getElementById("txtName").value;
+            if(confirm("are you sure to ClearAll?")){
+                localStorage.clear(name);
+            }
+            display();
+
+        }
+    </script>
+</html>

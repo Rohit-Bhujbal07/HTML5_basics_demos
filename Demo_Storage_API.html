@@ -1,0 +1,39 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="button" value="Local" onclick="funClick()">
+        <input type="button" value="Session" onclick="funSession()">
+        <div id="d1"></div>
+        <script>
+            var d1=document.getElementById("d1");
+            function funClick(){
+                var count=window.localStorage.clickCount;
+                if(count==undefined){
+                    localStorage.clickCount=1;
+                    d1.innerHTML=localStorage.clickCount;
+                }
+                else{
+                    count++;
+                    localStorage.clickCount=count;
+                    d1.innerHTML=localStorage.clickCount;
+                }
+            }
+
+            function funSession(){
+                var count=window.sessionStorage.clickCount;
+                if(count==undefined){
+                    sessionStorage.clickCount=1;
+                    d1.innerHTML=sessionStorage.clickCount;
+                }
+                else{
+                    count++;
+                    sessionStorage.clickCount=count;
+                    d1.innerHTML=sessionStorage.clickCount;
+                }
+            }
+
+        </script>
+    </body>
+</html>

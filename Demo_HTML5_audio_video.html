@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <style>
+         
+        </style>
+
+    </head>
+    <body>
+        
+        <video width="400px" height="300px" controls src="c:\Users\Latitude E7270\Korigad_2-Jul-21.mp4" muted="true"></video><br>
+       <input type="button" value="Play/Pause" onclick="funPlay()">
+       <input type="button" value="Forward" onclick="funForward()">
+       <input type="button" value="Rewind" onclick="funRewind()">
+       
+       <script>
+        var vd=document.querySelector("video");
+        var btn=document.querySelector("input[type=button]");
+        vd.onended=function(){
+            btn.value="play";
+        }
+        function funPlay(){
+            if (vd.paused==true) {
+            vd.play();
+            btn.value="play";
+        } 
+        else {
+            vd.pause();
+            btn.value="pause";
+        } 
+        }
+
+        function funForward(){
+            vd.currentTime=vd.currentTime+4;
+        }
+
+        function funRewind(){
+            vd.currentTime=vd.currentTime-4;
+        }
+        
+       </script>
+    </body>
+</html>

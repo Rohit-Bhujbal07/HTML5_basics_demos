@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <style>
+            svg{
+            width:400px;
+            height:400px;
+            border:2px solid black;
+        }
+        </style>
+
+    </head>
+    <body>
+        <svg>
+            <defs>
+                <pattern id="myPattern" x="0" y="0" width="117" height="117" viewport="0 0 117 117">
+                    <image xlink:href="Pants.jpg" x="0" y="0" width="117" height="117"></image>
+                </pattern>
+                <linearGradient id="grad" x="-5" y="-50" width="10" height="30">
+                    <stop offset="0%" stop-color="#663322"></stop>
+                    <stop offset="40%" stop-color="#554422"></stop>
+                    <stop offset="60%" stop-color="#996633"></stop>
+                </linearGradient>
+                
+                <rect id="stem" x="-5" y="-50" width="10" height="30"></rect>
+                <path id="canopy" d="M -25,-50
+                                     L -10,-80
+                                     L -20,-80
+                                     L -5,-110
+                                     L -15,-110
+                                     L  0,-140
+                                     L  15,-110
+                                     L   5,-110
+                                     L  20,-80
+                                     L  10,-80
+                                     L  25,-50
+                                     z"></path>
+
+                <g id="tree">
+                    <use xlink:href="#stem" style="fill:url(#grad)"></use>
+                    <use xlink:href="#canopy" style="fill:green;stroke:linegreen;stroke-width:2;stroke-linejoin: round"></use>
+                </g>
+                <g id="shadow">
+                    <use xlink:href="#stem" style="fill:rgba(0,0,0,0.3)"></use>
+                   <use xlink:href="#canopy" style="fill:rgba(0,0,0,0.3)" ></use>   
+                </g>                     
+            </defs>
+            <text id="text1" x="100" y="40" style="stroke:green" font-size="30"></text>
+                   <use xlink:href="#tree" transform="translate(100,190)"></use>
+                   <use xlink:href="#shadow" transform="translate(100,180) scale(1,0.7) rotate(30)"></use>
+                   <g transform="translate(-30,390)" style="stroke:url(#myPattern);stroke-width: 20;fill:none">
+                   <path d="M -110,30
+                   Q 170,-50,260,-190
+                   Q 310,-250,440,-260"></path>
+                   </g>
+        </svg>
+        <input type="button" value="Add tree" onclick="funAdd()">
+        <script>
+            var svg=document.querySelector("svg");
+            function funAdd(){
+                var x=Math.round(Math.random()*400);
+                var y=Math.round(Math.random()*400);
+                var s=(Math.random());
+                var str="translate("+x+","+y+") scale("+s+")";
+                
+                var use1=document.createElementNS("http://www.w3.org/2000/svg","use");
+
+                use1.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href","#tree");
+                use1.setAttribute("transform",str);
+
+                svg.appendChild(use1);
+                getCount();
+
+            }
+
+            function getCount(){
+                var count=0;
+                var arr=document.getElementsByTagName("use");
+                for(i=0;i<arr.length;i++){
+                    if(arr[i].getAttribute("xlink:href")=="#tree"){
+                        arr[i].addEventListener("click",funClick,false);
+                        count++;
+                    }
+                }
+                document.getElementById("text1").innerHTML=count+"Trees!!";
+            }
+            function funClick(event){
+               var x=event.currentTarget;
+               x.parentNode.removeChild(x);
+               getCount();
+            }
+        </script>
+    </body>
+</html>

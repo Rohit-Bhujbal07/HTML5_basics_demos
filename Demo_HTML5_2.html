@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            border:2px solid black;
+        }
+        img{
+            width:150px;
+            height:150px;
+            border:2px solid red;
+        }
+    </style>
+<head>
+    <script>
+        function dragstartHandler(event){
+            event.dataTransfer.setData("text/plain",event.currentTarget.id)
+        }
+        function dragHandler(event){
+            event.preventDefault();
+        }
+        function dropHandler(event){
+            var obj=event.dataTransfer.getData("text/plain");
+            console.log(obj);
+            event.currentTarget.appendChild(document.getElementById(obj));
+        }
+    </script>
+    
+</head>
+<body>
+    <div ondragover="dragHandler(event)" ondrop="dropHandler(event)">
+        <img src="Pants.jpg" draggable="true" id="img1" ondragstart="dragstartHandler(event)">    
+    </div>
+    <br>
+    <div ondragover="dragHandler(event)" ondrop="dropHandler(event)">
+    </div>
+
+</body>
+</html>
